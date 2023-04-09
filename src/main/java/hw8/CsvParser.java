@@ -82,8 +82,9 @@ public class CsvParser {
   }
 
   /**
-   * @param o object
-   * @return boolean
+   * Indicates whether some other object is "equal to" this one.
+   * @param o the reference object with which to compare.
+   * @return boolean true if this object is the same as the o argument; false otherwise.
    */
   @Override
   public boolean equals(Object o) {
@@ -99,7 +100,9 @@ public class CsvParser {
   }
 
   /**
-   * @return hash val
+   * Returns the hash code value for this CsvParser.
+   * The hash code is calculated based on the values of the header and mapList fields.
+   * @return the hash code value for this CsvParser.
    */
   @Override
   public int hashCode() {
@@ -107,7 +110,9 @@ public class CsvParser {
   }
 
   /**
-   * @return a string
+   * Returns a string representation of this CsvParser object.
+   * The string contains the class name, header, and mapList fields.
+   * @return A string representation of this CsvParser object.
    */
   @Override
   public String toString() {

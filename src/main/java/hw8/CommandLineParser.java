@@ -218,9 +218,11 @@ public class CommandLineParser {
     }
 
     /**
-     * Determines if two CommandLineParser objects are equal.
+     *  Determines whether the current CommandLineParser object is equal to another object. Two CommandLineParser objects
+     *  are considered equal if their arguments, emailOption, emailTemplateFile, letterOption, letterTemplateFile,
+     *  outDirectoryPath, and csvFile instance variables are all equal.
      * @param o the object to compare with the current instance
-     * @return boolean
+     * @return boolean true if the objects are equal, false otherwise
      */
     @Override
     public boolean equals(Object o) {
@@ -239,7 +241,9 @@ public class CommandLineParser {
     }
 
     /**
-     * @return hash val
+     * Generates a hash code for the current CommandLineParser object based on its arguments, emailOption,
+     * emailTemplateFile, letterOption, letterTemplateFile, outDirectoryPath, and csvFile instance variables.
+     * @return a hash code for the current instance
      */
     @Override
     public int hashCode() {
@@ -250,7 +254,9 @@ public class CommandLineParser {
     }
 
     /**
-     * @return a string
+     * Returns a string representation of the CommandLineParser object, including its arguments, emailOption,
+     * emailTemplateFile, letterOption, letterTemplateFile, outDirectoryPath, and csvFile instance variables.
+     * @return a string representation of the current instance
      */
     @Override
     public String toString() {

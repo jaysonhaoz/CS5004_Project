@@ -118,8 +118,9 @@ public class TemplateProcessor {
     }
 
     /**
-     * @param o object
-     * @return boolean
+     * Indicates whether some other object is "equal to" this one.
+     * @param o the reference object with which to compare.
+     * @return true if this object is the same as the o argument; false otherwise.
      */
     @Override
     public boolean equals(Object o) {
@@ -135,7 +136,13 @@ public class TemplateProcessor {
     }
 
     /**
-     * @return hash val
+     * Returns the hash code value for this TemplateProcessor object.
+     * The hash code is calculated based on the values of the templateFile, templateContent,
+     * and csv fields.
+     * The csv field's hash code is added to the hash code of the other two fields to ensure
+     * that the hash code for this object is unique even if two objects have the same templateFile
+     * and templateContent fields but different csv fields.
+     * @return the hash code value for this TemplateProcessor object.
      */
     @Override
     public int hashCode() {
@@ -143,7 +150,9 @@ public class TemplateProcessor {
     }
 
     /**
-     * @return a string
+     * Returns a string representation of this TemplateProcessor object.
+     * The string contains the class name, templateFile, templateContent, and csv fields.
+     * @return A string representation of this TemplateProcessor object.
      */
     @Override
     public String toString() {
