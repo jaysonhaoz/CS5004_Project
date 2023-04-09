@@ -217,6 +217,11 @@ public class CommandLineParser {
         return csvFile;
     }
 
+    /**
+     * Determines if two CommandLineParser objects are equal.
+     * @param o the object to compare with the current instance
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -233,6 +238,9 @@ public class CommandLineParser {
             that.outDirectoryPath) && Objects.equals(csvFile, that.csvFile);
     }
 
+    /**
+     * @return hash val
+     */
     @Override
     public int hashCode() {
         int result = Objects.hash(emailOption, emailTemplateFile, letterOption, letterTemplateFile,
@@ -241,6 +249,9 @@ public class CommandLineParser {
         return result;
     }
 
+    /**
+     * @return a string
+     */
     @Override
     public String toString() {
         return "CommandLineParser{" +

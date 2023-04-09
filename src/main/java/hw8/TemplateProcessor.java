@@ -93,18 +93,34 @@ public class TemplateProcessor {
         }
     }
 
+    /**
+     * Retrieves the template file associated with the current CommandLineParser instance.
+     * @return the template file as a String
+     */
     public String getTemplateFile() {
         return templateFile;
     }
 
+    /**
+     * Retrieves the template content associated with the current CommandLineParser instance.
+     * @return the template content as a String
+     */
     public String getTemplateContent() {
         return templateContent;
     }
 
+    /**
+     * Retrieves the CsvParser object associated with the current CommandLineParser instance.
+     * @return the CsvParser object
+     */
     public CsvParser getCsv() {
         return csv;
     }
 
+    /**
+     * @param o object
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -118,11 +134,17 @@ public class TemplateProcessor {
             templateContent, that.templateContent) && Objects.equals(csv, that.csv);
     }
 
+    /**
+     * @return hash val
+     */
     @Override
     public int hashCode() {
         return Objects.hash(templateFile, templateContent) + csv.hashCode();
     }
 
+    /**
+     * @return a string
+     */
     @Override
     public String toString() {
         return "TemplateProcessor{" +

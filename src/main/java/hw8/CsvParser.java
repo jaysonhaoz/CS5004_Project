@@ -81,6 +81,10 @@ public class CsvParser {
     return mapList;
   }
 
+  /**
+   * @param o object
+   * @return boolean
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,11 +98,17 @@ public class CsvParser {
         csvParser.mapList);
   }
 
+  /**
+   * @return hash val
+   */
   @Override
   public int hashCode() {
     return Objects.hash(header, mapList);
   }
 
+  /**
+   * @return a string
+   */
   @Override
   public String toString() {
     return "CsvParser{" +
