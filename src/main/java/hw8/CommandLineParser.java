@@ -5,6 +5,12 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The CommandLineParser class is responsible for processing and validating command line arguments.
+ * It checks the validity of the input options and stores the values for later use. The class
+ * supports the following options: --email, --letter, --email-template, --letter-template, --output-dir,
+ * and --csv-file.
+ */
 public class CommandLineParser {
 
     private static final String EMAIL = "--email";
@@ -26,6 +32,13 @@ public class CommandLineParser {
     private String outDirectoryPath;
     private String csvFile;
 
+    /**
+     * Constructor for the CommandLineParser class. It takes an array of input command line arguments,
+     * validates and processes them. The constructor sets the appropriate instance variables based on the
+     * provided options.
+     * If the input arguments do not satisfy the required conditions, it displays an error message or help message.
+     * @param inStrings the input command line arguments
+     */
     public CommandLineParser(String[] inStrings) {
         if (this.checkLength(inStrings)) {
             this.args = inStrings;
@@ -43,6 +56,15 @@ public class CommandLineParser {
         }
     }
 
+    /**
+     * This private method checks whether the length of the input command line arguments is within the
+     *  allowed range (MIN_LENGTH or MAX_LENGTH).
+     *  If the length is not within the allowed range, it prints an error message and throws an
+     *  IllegalCommandLineArgumentsException.
+     * @param args the input command line arguments as a string array
+     * @return true if the length is within the allowed range, false otherwise
+     * @throws IllegalCommandLineArgumentsException if the command line argument length is invalid
+     */
     private Boolean checkLength(String[] args) {
         if (args.length == MIN_LENGTH || args.length == MAX_LENGTH)
             return Boolean.TRUE;
@@ -52,6 +74,14 @@ public class CommandLineParser {
         }
     }
 
+    /**
+     * This private method checks if the --email option is provided and if so, looks for the corresponding
+     * --email-template option. It sets the emailTemplateFile instance variable with the provided file path
+     * if both options are found and valid.
+     * If the --email option is provided without a valid --email-template, it prints an error message.
+     *
+     * @return true if the --email option is provided with a valid --email-template, false otherwise
+     */
     private Boolean checkEmailOption() {
         for (String arg : this.args) {
             if (arg.equals(EMAIL)) {
@@ -68,6 +98,13 @@ public class CommandLineParser {
         return Boolean.FALSE;
     }
 
+    /**
+     * This private method checks if the --letter option is provided and if so, looks for the corresponding
+     * --letter-template option. It sets the letterTemplateFile instance variable with the provided file path
+     * if both options are found and valid.
+     * If the --letter option is provided without a valid --letter-template, it prints an error message.
+     * @return true if the --letter option is provided with a valid --letter-template, false otherwise
+     */
     private Boolean checkLetterOption() {
         for (String arg : this.args) {
             if (arg.equals(LETTER)) {
@@ -84,6 +121,13 @@ public class CommandLineParser {
         return Boolean.FALSE;
     }
 
+    /**
+     * This private method checks if the --output-dir option is provided and if so, looks for the corresponding
+     * output directory path. It sets the outDirectoryPath instance variable with the provided path
+     * if the option is found and valid.
+     * If the --output-dir option is provided without a valid output directory path, it prints an error message.
+     * @return true if the --output-dir option is provided with a valid output directory path, false otherwise
+     */
     private Boolean checkOutputOption() {
         for (int i = 0; i < this.args.length; i++) {
             if (this.args[i].equals(OUTPUT_DIR)) {
@@ -97,6 +141,13 @@ public class CommandLineParser {
         return Boolean.FALSE;
     }
 
+    /**
+     * This private method checks if the --csv-file option is provided and if so, looks for the corresponding
+     * CSV file path. It sets the csvFile instance variable with the provided file path if the option is found
+     * and valid.
+     * If the --csv-file option is provided without a valid CSV file path, it prints an error message.
+     * @return true if the --csv-file option is provided with a valid CSV file path, false otherwise
+     */
     private Boolean checkCSVFile() {
         for (int i = 0; i < this.args.length; i++) {
             if (this.args[i].equals(CSV_FILE)) {
@@ -110,30 +161,58 @@ public class CommandLineParser {
         return Boolean.FALSE;
     }
 
+    /**
+     * This public method returns the command line arguments as a string array.
+     * @return the command line arguments as a String array
+     */
     public String[] getArgs() {
         return args;
     }
 
+    /**
+     * This public method returns the email option status as a boolean value.
+     * @return true if the --email option is provided and valid, false otherwise
+     */
     public Boolean getEmailOption() {
         return emailOption;
     }
 
+    /**
+     * This public method returns the email template file path as a string.
+     * @return the email template file path, or null if the --email-template option is not provided or invalid
+     */
     public String getEmailTemplateFile() {
         return emailTemplateFile;
     }
 
+    /**
+     * This public method returns the letter option status as a boolean value.
+     * @return true if the --letter option is provided and valid, false otherwise
+     */
     public Boolean getLetterOption() {
         return letterOption;
     }
 
+    /**
+     * This public method returns the letter template file path as a string.
+     * @return the letter template file path, or null if the --letter-template option is not provided or invalid
+     */
     public String getLetterTemplateFile() {
         return letterTemplateFile;
     }
 
+    /**
+     * This public method returns the output directory path as a string.
+     * @return the output directory path, or null if the --output-dir option is not provided or invalid
+     */
     public String getOutDirectoryPath() {
         return outDirectoryPath;
     }
 
+    /**
+     * This public method returns the CSV file path as a string.
+     * @return the CSV file path, or null if the --csv-file option is not provided or invalid
+     */
     public String getCsvFile() {
         return csvFile;
     }
