@@ -23,7 +23,17 @@ public class CommandLineParser {
         LETTER_TEMPLATE, OUTPUT_DIR, CSV_FILE);
     private static final int MIN_LENGTH = 7;
     private static final int MAX_LENGTH = 10;
-    private static final String HELP_MESSAGE = " ";
+    private static final String HELP_MESSAGE = """
+        Usage:
+        --email Generate email messages. If this option is provided, then --email-template must also be provided.
+        --email-template <path/to/file> A filename for the email template.
+        --letter Generate letters. If this option is provided, then --letter-template must also be provided.
+        --letter-template <path/to/file> A filename for the letter template.
+        --output-dir <path/to/folder> The folder to store all generated files. This option is required.
+        --csv-file <path/to/folder> The CSV file to process. This option is required.
+        Examples:
+        --email --email-template email-template.txt --output-dir emails --csv-file customer.csv
+        --letter --letter-template letter-template.txt --output-dir letters -csv-file customer.csv""";
     private String[] args;
     private Boolean emailOption = Boolean.FALSE;
     private String emailTemplateFile;
@@ -70,6 +80,7 @@ public class CommandLineParser {
             return Boolean.TRUE;
         else {
             System.err.println("Invalid command line length!");
+            System.out.println(HELP_MESSAGE);
             throw new IllegalCommandLineArgumentsException("Error command line args!");
         }
     }
@@ -93,6 +104,7 @@ public class CommandLineParser {
                     }
                 }
                 System.err.println("Error: --email provided but no --email-template was given.");
+                System.out.println(HELP_MESSAGE);
             }
         }
         return Boolean.FALSE;
@@ -116,6 +128,7 @@ public class CommandLineParser {
                     }
                 }
                 System.err.println("Error: --letter provided but no --letter-template was given.");
+                System.out.println(HELP_MESSAGE);
             }
         }
         return Boolean.FALSE;
@@ -138,6 +151,7 @@ public class CommandLineParser {
             }
         }
         System.err.println("ERROR: No --output- command!");
+        System.out.println(HELP_MESSAGE);
         return Boolean.FALSE;
     }
 
@@ -158,6 +172,7 @@ public class CommandLineParser {
             }
         }
         System.out.println("ERROR: No --csv-file command!");
+        System.out.println(HELP_MESSAGE);
         return Boolean.FALSE;
     }
 
