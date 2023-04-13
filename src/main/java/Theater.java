@@ -5,20 +5,33 @@ public class Theater {
     private String name;
     private int numberOfRows;
     private ArrayList<Row> rows;
-    private ArrayList<Row> accessibleRows;
+    private ArrayList<Integer> accessibleRows;
 
-
-    public Theater(String name, int numberOfRows, int numSeat) {
+    public Theater(String name, ArrayList<Row> rows) {
+        if (name.length() == 0) throw new IllegalArgumentException("Theater name cannot be empty!");
+        if (rows.isEmpty()) throw new IllegalArgumentException("No seat row for the theater!");
         this.name = name;
-        this.numberOfRows = numberOfRows;
-        Random random = new Random();
-        for (int i = 0; i < numberOfRows; i++) {
-            Row row = new Row(numSeat, i + 1, random.nextInt(0,2) == 1 ? true : false);
+        this.rows = rows;
+        this.numberOfRows = this.rows.size();
+        for (Row row : rows) {
             if (row.isWheelchairAccessible())
-            {
-                accessibleRows.add(row);
-            }
-            rows.add(row);
+                this.accessibleRows.add(row.getRowNum());
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public ArrayList<Row> getRows() {
+        return rows;
+    }
+
+    public ArrayList<Integer> getAccessibleRows() {
+        return accessibleRows;
     }
 }
