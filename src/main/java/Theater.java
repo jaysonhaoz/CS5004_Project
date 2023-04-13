@@ -1,24 +1,33 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Theater {
     private String name;
     private int numberOfRows;
     private ArrayList<Row> rows;
-    private ArrayList<Row> accessibleRows;
 
-
-    public Theater(String name, int numberOfRows, int numSeat) {
+    public Theater(String name, int numberOfRows, int numSeat, ArrayList<Integer> accessibleRows) {
         this.name = name;
         this.numberOfRows = numberOfRows;
+        rows = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < numberOfRows; i++) {
-            Row row = new Row(numSeat, i + 1, random.nextInt(0,2) == 1 ? true : false);
-            if (row.isWheelchairAccessible())
-            {
-                accessibleRows.add(row);
-            }
+            boolean isAccessible = accessibleRows.contains(i + 1);
+            Row row = new Row(numSeat, i + 1, isAccessible);
             rows.add(row);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public ArrayList<Row> getRows() {
+        return rows;
     }
 }

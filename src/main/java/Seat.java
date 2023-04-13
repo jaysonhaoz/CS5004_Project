@@ -14,4 +14,17 @@ public class Seat {
     public String getReservedFor() {
         return reservedFor;
     }
+
+    public void setReservedFor(String reservedFor) {
+        this.reservedFor = reservedFor;
+    }
+
+    public boolean isReserved() {
+        return reservedFor != null;
+    }
+
+    @Override
+    public String toString() {
+        return isReserved() ? "X" : "_";
+    }
 }

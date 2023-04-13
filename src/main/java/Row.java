@@ -28,4 +28,15 @@ public class Row extends ArrayList<Seat> {
     public boolean isWheelchairAccessible() {
         return isWheelchairAccessible;
     }
+
+    @Override
+    public String toString() {
+        String prefix = (isWheelchairAccessible ? "=" : "_") + " ";
+        StringBuilder sb = new StringBuilder();
+        sb.append(prefix).append(num).append(" ");
+        for (Seat seat : this) {
+            sb.append(seat.toString()).append(" ");
+        }
+        return sb.toString();
+    }
 }
