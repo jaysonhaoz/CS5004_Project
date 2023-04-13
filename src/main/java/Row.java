@@ -6,7 +6,6 @@ public class Row extends ArrayList<Seat> {
 
     /**
      * Constructs an empty list with the specified initial capacity.
-     *
      * @param initialCapacity the initial capacity of the list
      * @throws IllegalArgumentException if the specified initial capacity
      *                                  is negative
