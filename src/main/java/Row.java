@@ -29,6 +29,7 @@ public class Row extends ArrayList<Seat> {
         return isWheelchairAccessible;
     }
 
+<<<<<<< HEAD
     private int seatAvailable() {
         int res = this.size();
         for (Seat seat : this) {
@@ -48,5 +49,16 @@ public class Row extends ArrayList<Seat> {
             if (seat.getReservedFor() == null)
                 seat.setReservedFor(customerName);
         }
+=======
+    @Override
+    public String toString() {
+        String prefix = (isWheelchairAccessible ? "=" : "_") + " ";
+        StringBuilder sb = new StringBuilder();
+        sb.append(prefix).append(num).append(" ");
+        for (Seat seat : this) {
+            sb.append(seat.toString()).append(" ");
+        }
+        return sb.toString();
+>>>>>>> weinanhw8
     }
 }
