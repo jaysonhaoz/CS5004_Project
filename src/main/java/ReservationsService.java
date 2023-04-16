@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class ReservationsService {
     public void reserveSeats(Theater theater, int numberOfSeats, String customerName, boolean wheelchairAccessible) {
         Row bestRow = null;
+        int startIndex = -1;
 
         for (Row row : theater.getRows()) {
             if (row.isWheelchairAccessible() != wheelchairAccessible) {
@@ -8,8 +13,9 @@ public class ReservationsService {
             }
 
             int availableSeatsInRow = 0;
-            for (Seat seat : row) {
-                if (seat.isReserved()) {
+            for (int i = 0; i < row.size(); i++) {
+                Seat seat = row.get(i);
+                if (!seat.isReserved()) {
                     availableSeatsInRow++;
                 } else {
                     availableSeatsInRow = 0;
@@ -17,6 +23,7 @@ public class ReservationsService {
 
                 if (availableSeatsInRow == numberOfSeats) {
                     bestRow = row;
+                    startIndex = i - numberOfSeats + 1;
                     break;
                 }
             }
@@ -31,12 +38,8 @@ public class ReservationsService {
             return;
         }
 
-        int reservedSeats = 0;
-        for (Seat seat : bestRow) {
-            if (seat.isReserved() && reservedSeats < numberOfSeats) {
-                seat.setReservedFor(customerName);
-                reservedSeats++;
-            }
+        for (int i = startIndex; i < startIndex + numberOfSeats; i++) {
+            bestRow.get(i).setReservedFor(customerName);
         }
 
         System.out.printf("I've reserved %d seats for you at the %s in row %d, %s.%n", numberOfSeats, theater.getName(), bestRow.getNum(), customerName);

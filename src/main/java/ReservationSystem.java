@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ReservationSystem {
     public static void main(String[] args) {
-        Theater theater = new Theater("NEU", 15, 10, new ArrayList<>(Arrays.asList(15, 10)));
+        Theater theater = new Theater("NEU", 15, 10, new ArrayList<>(Arrays.asList(2, 10)));
         ReservationsService reservationsService = new ReservationsService();
         Scanner scanner = new Scanner(System.in);
 
