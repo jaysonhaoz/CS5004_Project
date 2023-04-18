@@ -39,10 +39,7 @@ public class Seat {
      * @param reservedFor reservedFor the name of the person the seat is reserved for.
      */
     public void setReservedFor(String reservedFor) {
-<<<<<<< HEAD
         if (this.reservedFor != null) throw new IllegalCallerException("Cannot set already reserved seat!");
-=======
->>>>>>> d595e92232fb4165abc36d043a88674a19927a4b
         this.reservedFor = reservedFor;
     }
 

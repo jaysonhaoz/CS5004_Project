@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Row extends ArrayList<Seat> {
-<<<<<<< HEAD
 
     private int rowNum;
     private boolean isWheelchairAccessible;
@@ -21,14 +20,6 @@ public class Row extends ArrayList<Seat> {
             throw new IllegalArgumentException(
                 "The num of seats of the row differ from the given seats!");
         this.rowNum = rowNum;
-=======
-    private int num;
-    private boolean isWheelchairAccessible;
-
-    public Row(int initialCapacity, int num, boolean isWheelchairAccessible) {
-        super(initialCapacity);
-        this.num = num;
->>>>>>> d595e92232fb4165abc36d043a88674a19927a4b
         this.isWheelchairAccessible = isWheelchairAccessible;
         for (int i = 0; i < initialCapacity; i++) {
             Seat seat = new Seat(Character.toString((char) ('A' + i)));
@@ -36,15 +27,14 @@ public class Row extends ArrayList<Seat> {
         }
     }
 
-    public int getNum() {
-        return num;
+    public int getRowNum() {
+        return rowNum;
     }
 
     public boolean isWheelchairAccessible() {
         return isWheelchairAccessible;
     }
 
-<<<<<<< HEAD
     private int seatAvailable() {
         int res = this.size();
         for (Seat seat : this) {
@@ -66,13 +56,12 @@ public class Row extends ArrayList<Seat> {
                 seat.setReservedFor(customerName);
         }
     }
-=======
->>>>>>> d595e92232fb4165abc36d043a88674a19927a4b
+
     @Override
     public String toString() {
         String prefix = (isWheelchairAccessible ? "=" : "_") + " ";
         StringBuilder sb = new StringBuilder();
-        sb.append(prefix).append(num).append(" ");
+        sb.append(prefix).append(rowNum).append(" ");
         for (Seat seat : this) {
             sb.append(seat.toString()).append(" ");
         }
