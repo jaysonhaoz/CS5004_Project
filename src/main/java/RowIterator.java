@@ -8,12 +8,13 @@ public class RowIterator implements Iterator<Row> {
   private int calculate = 1;
 
   public RowIterator(Theater theater) {
+    this.theater = theater;
     this.cur = (1 + theater.getNumberOfRows()) / 2;
   }
 
   private Row getNthRow(int n) {
-    for (int i = 0; i < theater.getNumberOfRows(); i++) {
-      Row r = theater.get(i);
+    for (int i = 0; i < this.theater.getNumberOfRows(); i++) {
+      Row r = this.theater.get(i);
       if (r.getRowNum() == n) return r;
     }
     throw new IllegalCallerException("Cannot find row n!");
@@ -21,7 +22,7 @@ public class RowIterator implements Iterator<Row> {
 
   @Override
   public boolean hasNext() {
-    return (this.cur >= 1 && this.cur <= theater.getNumberOfRows());
+    return (this.cur >= 1 && this.cur <= this.theater.getNumberOfRows());
   }
 
 
