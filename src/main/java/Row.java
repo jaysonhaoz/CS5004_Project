@@ -21,10 +21,7 @@ public class Row extends ArrayList<Seat> {
                 "The num of seats of the row differ from the given seats!");
         this.rowNum = rowNum;
         this.isWheelchairAccessible = isWheelchairAccessible;
-        for (int i = 0; i < initialCapacity; i++) {
-            Seat seat = new Seat(Character.toString((char) ('A' + i)));
-            this.add(seat);
-        }
+        this.addAll(seats);
     }
 
     public int getRowNum() {
@@ -44,10 +41,9 @@ public class Row extends ArrayList<Seat> {
         return res;
     }
 
-    protected void reserveRow(int num, String customerName) {
+    protected boolean reserveRow(int num, String customerName) {
         if (num > this.seatAvailable()) {
-            System.out.println("Sorry, we don’t have that many seats together for you.");
-            return;
+            return false;
         }
         if (customerName.length() == 0)
             throw new IllegalArgumentException("Customer's name cannot be empty!");
@@ -55,6 +51,7 @@ public class Row extends ArrayList<Seat> {
             if (seat.getReservedFor() == null)
                 seat.setReservedFor(customerName);
         }
+        return true;
     }
 
     @Override

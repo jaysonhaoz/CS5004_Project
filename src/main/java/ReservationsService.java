@@ -3,7 +3,7 @@ public class ReservationsService {
         Row bestRow = null;
         int startIndex = -1;
 
-        for (Row row : theater.getRows()) {
+        for (Row row : theater.getAllRowsInTheater()) {
             if (row.isWheelchairAccessible() != wheelchairAccessible) {
                 continue;
             }
@@ -38,11 +38,11 @@ public class ReservationsService {
             bestRow.get(i).setReservedFor(customerName);
         }
 
-        System.out.printf("I've reserved %d seats for you at the %s in row %d, %s.%n", numberOfSeats, theater.getName(), bestRow.getRowNum(), customerName);
+        System.out.printf("I've reserved %d seats for you at the %s in row %d, %s.%n", numberOfSeats, theater.getTheaterName(), bestRow.getRowNum(), customerName);
     }
 
     public void show(Theater theater) {
-        for (Row row : theater.getRows()) {
+        for (Row row : theater.getAllRowsInTheater()) {
             System.out.println(row.toString());
         }
     }

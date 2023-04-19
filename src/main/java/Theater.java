@@ -1,46 +1,36 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
-public class Theater {
-    private String name;
+public class Theater extends ArrayList<Row> {
+    private String theaterName;
     private int numberOfRows;
-    private ArrayList<Row> rows;
     private ArrayList<Integer> accessibleRows;
 
-    public Theater(String name, ArrayList<Row> rows) {
-        if (name.length() == 0)
-            throw new IllegalArgumentException("Theater name cannot be empty!");
-        if (rows.isEmpty())
-            throw new IllegalArgumentException("No seat row for the theater!");
-        this.name = name;
-        this.rows = rows;
-        this.numberOfRows = this.rows.size();
+    public Theater(ArrayList<Row> rows, String theaterName, ArrayList<Integer> accessibleRows) {
+        super(rows);
+        if (rows.isEmpty()) throw new IllegalArgumentException("Rows is theater cannot be empty!");
+        if (theaterName.length() == 0) throw new IllegalArgumentException("Theater name cannot be empty!");
+        this.theaterName = theaterName;
+        this.numberOfRows = rows.size();
+        this.accessibleRows = accessibleRows;
         for (Row row : rows) {
             if (row.isWheelchairAccessible())
                 this.accessibleRows.add(row.getRowNum());
         }
     }
 
-    public Theater(String name, int numberOfRows, int numSeat, ArrayList<Integer> accessibleRows) {
-        this.name = name;
-        this.numberOfRows = numberOfRows;
-        rows = new ArrayList<>();
-        for (int i = 0; i < numberOfRows; i++) {
-            boolean isAccessible = accessibleRows.contains(i + 1);
-            Row row = new Row(numSeat, i + 1, isAccessible);
-            rows.add(row);
-        }
+    @Override
+    public Iterator<Row> iterator() {
+        return new RowIterator(this);
     }
 
-    public String getName() {
-        return name;
+    public String getTheaterName() {
+        return theaterName;
     }
 
     public int getNumberOfRows() {
         return numberOfRows;
-    }
-
-    public ArrayList<Row> getRows() {
-        return rows;
     }
 
     public ArrayList<Integer> getAccessibleRows() {
