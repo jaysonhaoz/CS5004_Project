@@ -20,6 +20,14 @@ public class Theater extends ArrayList<Row> {
         }
     }
 
+    public Row getNthRow(int n) {
+        for (int i = 0; i < this.getNumberOfRows(); i++) {
+            Row r = this.get(i);
+            if (r.getRowNum() == n) return r;
+        }
+        throw new IllegalArgumentException("Cannot find row n!");
+    }
+
     @Override
     public Iterator<Row> iterator() {
         return new RowIterator(this);
