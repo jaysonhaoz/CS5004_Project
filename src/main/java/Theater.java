@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 public class Theater extends ArrayList<Row> {
@@ -43,5 +42,14 @@ public class Theater extends ArrayList<Row> {
 
     public ArrayList<Integer> getAccessibleRows() {
         return accessibleRows;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= this.numberOfRows; i++) {
+            stringBuilder.append(this.getNthRow(i).toString()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
     }
 }

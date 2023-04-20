@@ -1,44 +1,27 @@
 public class ReservationsService {
-    public void reserveSeats(Theater theater, int numberOfSeats, String customerName, boolean wheelchairAccessible) {
-        Row bestRow = null;
-        int startIndex = -1;
+    public static boolean reserveSeat(Theater theater, int numberOfSeats, String customerName, Boolean wheelchairAccessible) {
+        if (numberOfSeats <= 0) throw new IllegalArgumentException("Number of seats to be reserved cannot be negative or 0!");
+        if (customerName.length() == 0) throw new IllegalArgumentException("Customer name cannot be empty!");
 
-        for (Row row : theater.getAllRowsInTheater()) {
-            if (row.isWheelchairAccessible() != wheelchairAccessible) {
-                continue;
-            }
-
-            int availableSeatsInRow = 0;
-            for (int i = 0; i < row.size(); i++) {
-                Seat seat = row.get(i);
-                if (!seat.isReserved()) {
-                    availableSeatsInRow++;
-                } else {
-                    availableSeatsInRow = 0;
-                }
-
-                if (availableSeatsInRow == numberOfSeats) {
-                    bestRow = row;
-                    startIndex = i - numberOfSeats + 1;
-                    break;
+        if (wheelchairAccessible) {
+           for (Row eachRow : theater) {
+               if (eachRow.isWheelchairAccessible() && eachRow.reserveRow(numberOfSeats, customerName))
+                   return true;
+           }
+        }
+        else {
+            for (Row eachRow : theater) {
+                if (!eachRow.isWheelchairAccessible()) {
+                    if (eachRow.reserveRow(numberOfSeats, customerName))
+                        return true;
                 }
             }
-
-            if (bestRow != null) {
-                break;
+            for (Row eachRow : theater) {
+                if (eachRow.reserveRow(numberOfSeats, customerName))
+                    return true;
             }
         }
-
-        if (bestRow == null) {
-            System.out.println("Sorry, we don't have that many seats together for you.");
-            return;
-        }
-
-        for (int i = startIndex; i < startIndex + numberOfSeats; i++) {
-            bestRow.get(i).setReservedFor(customerName);
-        }
-
-        System.out.printf("I've reserved %d seats for you at the %s in row %d, %s.%n", numberOfSeats, theater.getTheaterName(), bestRow.getRowNum(), customerName);
+        return false;
     }
 
     public void show(Theater theater) {
