@@ -3,12 +3,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
+ * The ReservationSystem class represents a simple text-based user interface for managing
+ * seat reservations in a theater.
  */
 public class ReservationSystem {
 
     /**
-     * @param args
+     * The main method serves as the entry point of the ReservationSystem application.
+     * It initializes a Theater object, handles user input, and provides feedback.
+     *
+     * @param args command line arguments (not used in this application)
      */
   public static void main(String[] args) {
     Theater theater = new Theater("NEU", 15, 10, new ArrayList<>(Arrays.asList(2, 10)));

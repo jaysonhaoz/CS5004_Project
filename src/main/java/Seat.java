@@ -20,7 +20,7 @@ public class Seat {
 
     /**
      * Returns the name of the seat.
-     * @return  the name of the seat.
+     * @return the name of the seat.
      */
     public String getName() {
         return name;

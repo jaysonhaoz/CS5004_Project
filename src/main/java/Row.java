@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 /**
- *
+ * The Row class represents a row of seats in a theater or auditorium.
+ * It extends ArrayList to store and manage Seat objects.
  */
 public class Row extends ArrayList<Seat> {
     private static final char A = 'A';
@@ -10,9 +11,13 @@ public class Row extends ArrayList<Seat> {
     private boolean isWheelchairAccessible;
 
     /**
-     * @param seatNum
-     * @param rowNum
-     * @param isWheelchairAccessible
+     * Constructs a Row object with the specified number of seats, row number, and wheelchair accessibility.
+     * The Row object is initialized with Seat objects in consecutive order.
+     *
+     * @param seatNum the number of seats in the row
+     * @param rowNum  the row number
+     * @param isWheelchairAccessible whether the row is wheelchair accessible
+     * @throws IllegalArgumentException if the specified number of seats is 0, exceeds MAX value, or the row number is negative or 0
      */
     public Row(int seatNum, int rowNum, boolean isWheelchairAccessible) {
         super(seatNum);
@@ -29,10 +34,13 @@ public class Row extends ArrayList<Seat> {
     }
 
     /**
-     * Constructs an empty list with the specified initial capacity.
+     * Constructs a Row object with the specified initial capacity, row number, wheelchair accessibility, and seats.
      *
      * @param initialCapacity the initial capacity of the list
-     * @throws IllegalArgumentException if the specified initial capacity is negative
+     * @param rowNum the row number
+     * @param isWheelchairAccessible whether the row is wheelchair accessible
+     * @param seats the list of Seat objects
+     * @throws IllegalArgumentException if the specified initial capacity is negative, the seats list is empty, the number of seats differs from the given seats, or the row number is negative or 0
      */
     public Row(int initialCapacity, int rowNum, boolean isWheelchairAccessible,
         ArrayList<Seat> seats) {
@@ -49,21 +57,27 @@ public class Row extends ArrayList<Seat> {
     }
 
     /**
-     * @return
+     * Returns the row number of this Row object.
+     *
+     * @return the row number
      */
     public int getRowNum() {
         return rowNum;
     }
 
     /**
-     * @return
+     * Returns whether this Row object is wheelchair accessible.
+     *
+     * @return true if the row is wheelchair accessible, false otherwise
      */
     public boolean isWheelchairAccessible() {
         return isWheelchairAccessible;
     }
 
     /**
-     * @return
+     * Returns the number of available seats in this Row object.
+     *
+     * @return the number of available seats
      */
     private int seatAvailable() {
         int res = this.size();
@@ -75,9 +89,12 @@ public class Row extends ArrayList<Seat> {
     }
 
     /**
-     * @param num
-     * @param customerName
-     * @return
+     * Reserves the specified number of seats in this Row object for the given customer.
+     *
+     * @param num the number of seats to reserve
+     * @param customerName the name of the customer reserving the seats
+     * @return true if the reservation is successful, false otherwise
+     * @throws IllegalArgumentException if the customer's name is empty
      */
     protected boolean reserveRow(int num, String customerName) {
         if (num > this.seatAvailable()) {
@@ -98,7 +115,9 @@ public class Row extends ArrayList<Seat> {
     }
 
     /**
-     * @return
+     * Returns a string representation of this Row object.
+     *
+     * @return a string representation of the row
      */
     @Override
     public String toString() {

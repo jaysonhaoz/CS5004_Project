@@ -1,7 +1,8 @@
 import java.util.Iterator;
 
 /**
- *
+ * The RowIterator class provides an iterator for iterating through the rows of a Theater object.
+ * It implements the Iterator interface for Row objects.
  */
 public class RowIterator implements Iterator<Row> {
 
@@ -11,7 +12,9 @@ public class RowIterator implements Iterator<Row> {
   private int calculate = 1;
 
   /**
-   * @param theater
+   * Constructs a RowIterator object for the specified Theater.
+   *
+   * @param theater the Theater object whose rows will be iterated
    */
   public RowIterator(Theater theater) {
     this.theater = theater;
@@ -20,7 +23,9 @@ public class RowIterator implements Iterator<Row> {
 
 
   /**
-   * @return
+   * Returns true if the iterator has more elements (rows) to iterate.
+   *
+   * @return true if the iterator has more rows to iterate, false otherwise
    */
   @Override
   public boolean hasNext() {
@@ -29,7 +34,10 @@ public class RowIterator implements Iterator<Row> {
 
 
   /**
-   * @return
+   * Returns the next Row object in the iteration, starting from the middle row and
+   * alternating between rows above and below the middle row.
+   *
+   * @return the next Row object in the iteration
    */
   @Override
   public Row next() {
