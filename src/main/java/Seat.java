@@ -7,6 +7,7 @@
 public class Seat {
     private String name;
     private String reservedFor;
+    private boolean wheelChairAccessible;
 
     /**
      * Constructs a Seat object with the given name.
@@ -51,8 +52,14 @@ public class Seat {
         return reservedFor != null;
     }
 
+    public void setWheelChairAccessible(boolean wheelChairAccessible) {
+        this.wheelChairAccessible = wheelChairAccessible;
+    }
+
     @Override
     public String toString() {
-        return isReserved() ? "X" : "_";
+        if (this.isReserved()) return "X";
+        if (this.wheelChairAccessible) return "=";
+        return "_";
     }
 }

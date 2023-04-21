@@ -1,9 +1,24 @@
 import java.util.ArrayList;
 
 public class Row extends ArrayList<Seat> {
-
+    private static final char A = 'A';
+    private static final int MAX = 26;
     private int rowNum;
     private boolean isWheelchairAccessible;
+
+    public Row(int seatNum, int rowNum, boolean isWheelchairAccessible) {
+        super(seatNum);
+        if (seatNum == 0) throw new IllegalArgumentException("Seats in a row cannot be empty!");
+        if (seatNum > MAX) throw new IllegalArgumentException("Number of seat exceeds Max value!");
+        if (rowNum <= 0) throw new IllegalArgumentException("row number cannot be negative or 0!");
+        for (int i = 0; i < seatNum; i++) {
+            Seat newSeat = new Seat(String.valueOf(i + A));
+            newSeat.setWheelChairAccessible(isWheelchairAccessible);
+            this.add(newSeat);
+        }
+        this.rowNum = rowNum;
+        this.isWheelchairAccessible = isWheelchairAccessible;
+    }
 
     /**
      * Constructs an empty list with the specified initial capacity.
@@ -19,6 +34,7 @@ public class Row extends ArrayList<Seat> {
         if (this.size() != seats.size())
             throw new IllegalArgumentException(
                 "The num of seats of the row differ from the given seats!");
+        if (rowNum <= 0) throw new IllegalArgumentException("row number cannot be negative or 0!");
         this.rowNum = rowNum;
         this.isWheelchairAccessible = isWheelchairAccessible;
         this.addAll(seats);
@@ -47,18 +63,23 @@ public class Row extends ArrayList<Seat> {
         }
         if (customerName.length() == 0)
             throw new IllegalArgumentException("Customer's name cannot be empty!");
+        int count = 0;
         for (Seat seat : this) {
-            if (seat.getReservedFor() == null)
-                seat.setReservedFor(customerName);
+            if (count < num) {
+                if (seat.getReservedFor() == null){
+                    seat.setReservedFor(customerName);
+                    ++count;
+                }
+            }
         }
         return true;
     }
 
     @Override
     public String toString() {
-        String prefix = (isWheelchairAccessible ? "=" : "_") + " ";
         StringBuilder sb = new StringBuilder();
-        sb.append(prefix).append(rowNum).append(" ");
+
+        sb.append(rowNum).append(this.rowNum < 10 ? "  " : " ");
         for (Seat seat : this) {
             sb.append(seat.toString()).append(" ");
         }
