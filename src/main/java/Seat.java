@@ -52,10 +52,21 @@ public class Seat {
         return reservedFor != null;
     }
 
+    /**
+     * Sets the wheelchair accessibility status of the seat.
+     * @param wheelChairAccessible true if the seat is wheelchair accessible, false otherwise.
+     */
     public void setWheelChairAccessible(boolean wheelChairAccessible) {
         this.wheelChairAccessible = wheelChairAccessible;
     }
 
+    /**
+     * Returns a string representation of the seat.
+     * If the seat is reserved, the string will be "X".
+     * If the seat is wheelchair accessible and not reserved, the string will be "=".
+     * If the seat is neither reserved nor wheelchair accessible, the string will be "_".
+     * @return the string representation of the seat.
+     */
     @Override
     public String toString() {
         if (this.isReserved()) return "X";

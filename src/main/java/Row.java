@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class Row extends ArrayList<Seat> {
     private static final char A = 'A';
     private static final int MAX = 26;
     private int rowNum;
     private boolean isWheelchairAccessible;
 
+    /**
+     * @param seatNum
+     * @param rowNum
+     * @param isWheelchairAccessible
+     */
     public Row(int seatNum, int rowNum, boolean isWheelchairAccessible) {
         super(seatNum);
         if (seatNum == 0) throw new IllegalArgumentException("Seats in a row cannot be empty!");
@@ -40,14 +48,23 @@ public class Row extends ArrayList<Seat> {
         this.addAll(seats);
     }
 
+    /**
+     * @return
+     */
     public int getRowNum() {
         return rowNum;
     }
 
+    /**
+     * @return
+     */
     public boolean isWheelchairAccessible() {
         return isWheelchairAccessible;
     }
 
+    /**
+     * @return
+     */
     private int seatAvailable() {
         int res = this.size();
         for (Seat seat : this) {
@@ -57,6 +74,11 @@ public class Row extends ArrayList<Seat> {
         return res;
     }
 
+    /**
+     * @param num
+     * @param customerName
+     * @return
+     */
     protected boolean reserveRow(int num, String customerName) {
         if (num > this.seatAvailable()) {
             return false;
@@ -75,6 +97,9 @@ public class Row extends ArrayList<Seat> {
         return true;
     }
 
+    /**
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

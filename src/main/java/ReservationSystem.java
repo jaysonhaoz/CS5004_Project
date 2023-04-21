@@ -2,8 +2,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class ReservationSystem {
 
+    /**
+     * @param args
+     */
   public static void main(String[] args) {
     Theater theater = new Theater("NEU", 15, 10, new ArrayList<>(Arrays.asList(2, 10)));
     ReservationsService rs = new ReservationsService();
