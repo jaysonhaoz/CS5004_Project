@@ -24,6 +24,9 @@ public class RowIterator implements Iterator<Row> {
     this.cur = (1 + theater.getNumberOfRows()) / 2;
   }
 
+  public int getCur() {
+    return cur;
+  }
 
   /**
    * Returns true if the iterator has more elements (rows) to iterate.

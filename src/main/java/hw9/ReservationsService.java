@@ -26,9 +26,6 @@ public class ReservationsService {
           throw new IllegalArgumentException(
               "Number of seats to be reserved cannot be negative or 0!");
       }
-      if (customerName.length() == 0) {
-          throw new IllegalArgumentException("Customer name cannot be empty!");
-      }
 
     if (wheelchairAccessible) {
       for (Row eachRow : theater) {
