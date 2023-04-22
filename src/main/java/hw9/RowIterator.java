@@ -57,6 +57,14 @@ public class RowIterator implements Iterator<Row> {
     return res;
   }
 
+  /**
+   * Indicates whether the given object is equal to this RowIterator object. Two RowIterator objects are
+   * considered equal if they are iterating through the same Theater object, have the same current row,
+   * and have the same calculate value.
+   *
+   * @param o the object to be compared for equality with this RowIterator object
+   * @return true if the specified object is equal to this RowIterator object; false otherwise
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -70,6 +78,12 @@ public class RowIterator implements Iterator<Row> {
         that.theater);
   }
 
+  /**
+   * Returns a hash code value for the RowIterator object. The hash code is calculated based on the
+   * Theater object being iterated, the current row, and the calculate value.
+   *
+   * @return a hash code value for this RowIterator object
+   */
   @Override
   public int hashCode() {
     return Objects.hash(theater, cur, calculate);

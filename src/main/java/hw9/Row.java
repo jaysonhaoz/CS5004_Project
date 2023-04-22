@@ -110,6 +110,16 @@ public class Row extends ArrayList<Seat> {
         return sb.toString();
     }
 
+    /**
+     * Determines whether this Row object is equal to the specified object.
+     * Two Row objects are considered equal if they are of the same class,
+     * have the same row number, are both wheelchair accessible or not,
+     * and have the same Seat objects in the same order.
+     *
+     * @param o the object to compare this Row object to
+     * @return true if this Row object is equal to the specified object,
+     *         false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -125,6 +135,13 @@ public class Row extends ArrayList<Seat> {
         return rowNum == row.rowNum && isWheelchairAccessible == row.isWheelchairAccessible;
     }
 
+    /**
+     * Returns a hash code value for this Row object. The hash code is computed
+     * based on the hash codes of the superclass (ArrayList), the row number,
+     * and the wheelchair accessibility flag.
+     *
+     * @return a hash code value for this Row object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), rowNum, isWheelchairAccessible);

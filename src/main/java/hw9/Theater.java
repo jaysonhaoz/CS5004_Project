@@ -98,6 +98,14 @@ public class Theater extends ArrayList<Row> {
         return stringBuilder.toString();
     }
 
+    /**
+     * Indicates whether the given object is equal to this Theater object. Two Theater objects are considered equal
+     * if they have the same theater name, number of rows, accessible rows for wheelchair users, and the same Row
+     * objects stored in them.
+     *
+     * @param o the object to be compared for equality with this Theater object
+     * @return true if the specified object is equal to this Theater object; false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,6 +122,12 @@ public class Theater extends ArrayList<Row> {
             rows.theaterName) && Objects.equals(accessibleRows, rows.accessibleRows);
     }
 
+    /**
+     * Returns a hash code value for the Theater object. The hash code is calculated based on the theater's
+     * name, number of rows, accessible rows for wheelchair users, and the Row objects stored in it.
+     *
+     * @return a hash code value for this Theater object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), theaterName, numberOfRows, accessibleRows);

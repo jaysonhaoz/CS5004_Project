@@ -89,6 +89,13 @@ public class Seat {
         return UNRESERVED;
     }
 
+    /**
+     * Indicates whether the given object is equal to this Seat object. Two Seat objects are considered equal
+     * if they have the same name, reservation status, and wheelchair accessibility status.
+     *
+     * @param o the object to be compared for equality with this Seat object
+     * @return true if the specified object is equal to this Seat object; false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,6 +109,12 @@ public class Seat {
             seat.name) && Objects.equals(reservedFor, seat.reservedFor);
     }
 
+    /**
+     * Returns a hash code value for the Seat object. The hash code is calculated based on the seat's
+     * name, reservation status, and wheelchair accessibility status.
+     *
+     * @return a hash code value for this Seat object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name, reservedFor, wheelChairAccessible);
