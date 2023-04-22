@@ -1,8 +1,11 @@
+package hw9;
+
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
- * The RowIterator class provides an iterator for iterating through the rows of a Theater object.
- * It implements the Iterator interface for Row objects.
+ * The RowIterator class provides an iterator for iterating through the rows of a Theater object. It
+ * implements the Iterator interface for Row objects.
  */
 public class RowIterator implements Iterator<Row> {
 
@@ -34,8 +37,8 @@ public class RowIterator implements Iterator<Row> {
 
 
   /**
-   * Returns the next Row object in the iteration, starting from the middle row and
-   * alternating between rows above and below the middle row.
+   * Returns the next Row object in the iteration, starting from the middle row and alternating
+   * between rows above and below the middle row.
    *
    * @return the next Row object in the iteration
    */
@@ -43,8 +46,29 @@ public class RowIterator implements Iterator<Row> {
   public Row next() {
     Row res = this.theater.getNthRow(this.cur);
     this.cur = this.cur + this.calculate;
-    if (this.calculate > 0) this.calculate = -this.calculate - 1;
-    else this.calculate = -this.calculate + 1;
+    if (this.calculate > 0) {
+      this.calculate = -this.calculate - 1;
+    } else {
+      this.calculate = -this.calculate + 1;
+    }
     return res;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RowIterator that = (RowIterator) o;
+    return cur == that.cur && calculate == that.calculate && Objects.equals(theater,
+        that.theater);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(theater, cur, calculate);
   }
 }

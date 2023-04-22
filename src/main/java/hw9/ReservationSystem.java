@@ -1,3 +1,5 @@
+package hw9;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -30,31 +32,25 @@ public class ReservationSystem {
         try {
             int numSeats = Integer.parseInt(cmd[1]);
             if (numSeats > theater.get(0).size()) {
-                System.out.println(
-                    "Sorry, we don’t have that many seats together for you.");
+                System.out.println("Sorry, we don’t have that many seats together for you.");
             } else {
                 System.out.println("What's your name?");
                 String customerName = scanner.nextLine();
                 System.out.println("Do you need wheelchair accessible seats? (yes/no)");
                 String wheelchairResponse = scanner.nextLine().trim().toLowerCase();
                 boolean wheelchairAccessible = wheelchairResponse.equals("yes");
-                boolean res = rs.reserveSeat(theater, numSeats, customerName,
-                    wheelchairAccessible);
+                boolean res = rs.reserveSeat(theater, numSeats, customerName, wheelchairAccessible);
                 if (res) {
                     System.out.println(
                         "I’ve reserved " + numSeats + " seats for you at the " +
                             theater.getTheaterName() + " in row " + rs.getRowReserved()
                             + ", " + customerName + ".");
-                }
+                } else {System.out.println("Sorry, we don’t have that many seats together for you.");}
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid command. Please try again.");
-        }
+        } catch (NumberFormatException e) {System.out.println("Invalid command. Please try again.");}
       } else if (command.equals("show")) {
         Viewer.showSeats(theater);
-      } else {
-        System.out.println("Invalid command. Please try again.");
-      }
+      } else {System.out.println("Invalid command. Please try again.");}
     }
     scanner.close();
   }

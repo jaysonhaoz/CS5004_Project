@@ -1,4 +1,7 @@
+package hw9;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * The Row class represents a row of seats in a theater or auditorium.
@@ -31,29 +34,6 @@ public class Row extends ArrayList<Seat> {
         }
         this.rowNum = rowNum;
         this.isWheelchairAccessible = isWheelchairAccessible;
-    }
-
-    /**
-     * Constructs a Row object with the specified initial capacity, row number, wheelchair accessibility, and seats.
-     *
-     * @param initialCapacity the initial capacity of the list
-     * @param rowNum the row number
-     * @param isWheelchairAccessible whether the row is wheelchair accessible
-     * @param seats the list of Seat objects
-     * @throws IllegalArgumentException if the specified initial capacity is negative, the seats list is empty, the number of seats differs from the given seats, or the row number is negative or 0
-     */
-    public Row(int initialCapacity, int rowNum, boolean isWheelchairAccessible,
-        ArrayList<Seat> seats) {
-        super(initialCapacity);
-        if (seats.isEmpty())
-            throw new IllegalArgumentException("Seats in a row cannot be empty!");
-        if (this.size() != seats.size())
-            throw new IllegalArgumentException(
-                "The num of seats of the row differ from the given seats!");
-        if (rowNum <= 0) throw new IllegalArgumentException("row number cannot be negative or 0!");
-        this.rowNum = rowNum;
-        this.isWheelchairAccessible = isWheelchairAccessible;
-        this.addAll(seats);
     }
 
     /**
@@ -128,5 +108,25 @@ public class Row extends ArrayList<Seat> {
             sb.append(seat.toString()).append(" ");
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Row row = (Row) o;
+        return rowNum == row.rowNum && isWheelchairAccessible == row.isWheelchairAccessible;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), rowNum, isWheelchairAccessible);
     }
 }

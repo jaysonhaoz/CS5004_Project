@@ -1,5 +1,8 @@
+package hw9;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * The Theater class represents a theater with multiple rows.
@@ -33,24 +36,6 @@ public class Theater extends ArrayList<Row> {
         this.theaterName = theaterName;
         this.numberOfRows = numberOfRows;
         this.accessibleRows = accessibleRows;
-    }
-
-    /**
-     * Constructs a Theater object with the given rows and theater name.
-     * @param rows an ArrayList of Row objects representing the rows in the theater.
-     * @param theaterName the name of the theater.
-     */
-    public Theater(ArrayList<Row> rows, String theaterName) {
-        super(rows);
-        if (rows.isEmpty()) throw new IllegalArgumentException("Rows is theater cannot be empty!");
-        if (theaterName.length() == 0) throw new IllegalArgumentException("Theater name cannot be empty!");
-        this.theaterName = theaterName;
-        this.numberOfRows = rows.size();
-        this.accessibleRows = new ArrayList<>();
-        for (Row row : rows) {
-            if (row.isWheelchairAccessible())
-                this.accessibleRows.add(row.getRowNum());
-        }
     }
 
     /**
@@ -111,5 +96,26 @@ public class Theater extends ArrayList<Row> {
             stringBuilder.append(this.getNthRow(i).toString()).append(System.lineSeparator());
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Theater rows = (Theater) o;
+        return numberOfRows == rows.numberOfRows && Objects.equals(theaterName,
+            rows.theaterName) && Objects.equals(accessibleRows, rows.accessibleRows);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), theaterName, numberOfRows, accessibleRows);
     }
 }

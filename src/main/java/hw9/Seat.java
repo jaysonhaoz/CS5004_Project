@@ -1,10 +1,17 @@
+package hw9;
+
+import java.util.Objects;
+
 /**
- * The Seat class represents a single seat in a theater.
- * It stores information about the seat's name and reservation status.
- * The name of the seat.
- * The name of the person the seat is reserved for, or null if the seat is not reserved.
+ * The Seat class represents a single seat in a theater. It stores information about the seat's name
+ * and reservation status. The name of the seat. The name of the person the seat is reserved for, or
+ * null if the seat is not reserved.
  */
 public class Seat {
+    private static final String RESERVED = "X";
+    public static final String WHEELCHAIR = "=";
+    public static final String UNRESERVED = "_";
+
     private String name;
     private String reservedFor;
     private boolean wheelChairAccessible;
@@ -60,6 +67,10 @@ public class Seat {
         this.wheelChairAccessible = wheelChairAccessible;
     }
 
+    public boolean isWheelChairAccessible() {
+        return wheelChairAccessible;
+    }
+
     /**
      * Returns a string representation of the seat.
      * If the seat is reserved, the string will be "X".
@@ -69,8 +80,30 @@ public class Seat {
      */
     @Override
     public String toString() {
-        if (this.isReserved()) return "X";
-        if (this.wheelChairAccessible) return "=";
-        return "_";
+        if (this.isReserved()) {
+            return RESERVED;
+        }
+        if (this.wheelChairAccessible) {
+            return WHEELCHAIR;
+        }
+        return UNRESERVED;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Seat seat = (Seat) o;
+        return wheelChairAccessible == seat.wheelChairAccessible && Objects.equals(name,
+            seat.name) && Objects.equals(reservedFor, seat.reservedFor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, reservedFor, wheelChairAccessible);
     }
 }
