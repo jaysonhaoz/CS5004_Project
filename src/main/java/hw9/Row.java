@@ -138,7 +138,7 @@ public class Row extends ArrayList<Seat> {
     /**
      * Returns a hash code value for this Row object. The hash code is computed
      * based on the hash codes of the superclass (ArrayList), the row number,
-     * and the wheelchair accessibility flag.
+     * and the wheelchair accessibility flag.it
      *
      * @return a hash code value for this Row object
      */
